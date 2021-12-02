@@ -28,8 +28,8 @@ in:
 out: 
   type: mysql
   host: db
-  user: user
-  password: pass
+  user: {{ env.MYSQL_USER }}
+  password: {{ env.MYSQL_PASSWORD }}
   database: db
   table: customer_table
   mode: replace
