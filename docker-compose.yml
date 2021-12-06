@@ -3,20 +3,19 @@ version: '3.2'
 services: 
   db:
     image: db/mysql:1.0
-    build: db
+    build: ./db
     container_name: 'db'
     ports:
       - "3306:3306"
     env_file:
       - .env
     volumes: 
-      - db/scr:/src
-      - db/mysql:/var/lib/mysql
-      - db/init:/docker-entrypoint-initdb.d
+      - ./db/mysql:/var/lib/mysql
+      - ./db/init:/docker-entrypoint-initdb.d
 
   server:
     image: server/embulk:1.0
-    build: server
+    build: ./server
     container_name: 'emb'
     ports:
       - "5432:5432"
@@ -25,6 +24,6 @@ services:
     tty: true
     stdin_open: true
     volumes:
-      - server/app:/app
+      - ./server/app:/app
     depends_on:
       - db
