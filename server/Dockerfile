@@ -14,6 +14,7 @@ RUN mkdir -p ${PATH_TO_EMBULK} \
     && curl --create-dirs -o ${PATH_TO_EMBULK}/embulk -L "https://dl.embulk.org/embulk-0.9.23.jar" \
     && chmod +x ${PATH_TO_EMBULK}/embulk
 
+# install plugins
 RUN embulk gem install embulk-output-mysql embulk-output-bigquery embulk-filter-column
 RUN embulk gem install google-cloud-env -v 1.2.1
 RUN embulk gem install google-cloud-core -v 1.3.2
